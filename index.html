@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>mush1e • Terminal Portfolio</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <title>mush1e • Mindblowing Portfolio</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- full-screen Vanta canvas container -->
+  <style>
+    body, html { margin:0; padding:0; width:100%; height:100%; overflow:hidden; }
+    #vanta-bg { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+  </style>
 </head>
 <body>
-  <div id="terminal"></div>
+  <div id="vanta-bg"></div>
+  <div class="container">
+    <pre class="banner glitch">
+███╗   ███╗██╗   ██╗███████╗██╗  ██╗ ██╗███████╗
+████╗ ████║██║   ██║██╔════╝██║  ██║███║██╔════╝
+██╔████╔██║██║   ██║███████╗███████║╚██║█████╗  
+██║╚██╔╝██║██║   ██║╚════██║██╔══██║ ██║██╔══╝  
+██║ ╚═╝ ██║╚██████╔╝███████║██║  ██║ ██║███████╗
+╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═╝╚══════╝
+    </pre>
+    <ul class="menu">
+      <li class="menu-item" data-cmd="about">About</li>
+      <li class="menu-item" data-cmd="projects">Projects</li>
+      <li class="menu-item" data-cmd="skills">Skills</li>
+      <li class="menu-item" data-cmd="contact">Contact</li>
+    </ul>
+    <div id="output"></div>
+  </div>
+
+  <!-- Three.js + Vanta.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.121.1/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/dist/vanta.net.min.js"></script>
   <script src="assets/script.js"></script>
 </body>
 </html>

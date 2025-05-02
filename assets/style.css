@@ -1,100 +1,91 @@
-/* full-screen terminal */
-html, body {
-    margin: 0;
-    height: 100%;
-    background: #000;
-    color: #33ff33;
-    font-family: 'Courier New', monospace;
-    overflow: hidden;
-  }
-  #terminal {
-    box-sizing: border-box;
-    padding: 1rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  
-  /* each line of text */
-  .line {
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-  
-  /* blinking cursor */:root {
-  --bg:   #2E2E2E;   /* dark slate */
-  --text: #9AEDC7;   /* pastel mint */
-  --cursor: #FFC6FF; /* pastel pink */
-  --prompt: #FFD6A5; /* pastel peach */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --bg:      #111;      /* deep space */
+  --text:    #c6f0d6;    /* pastel mint */
+  --accent:  #ffa7c4;    /* neon pink */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
 }
 
 html, body {
-  margin: 0;
+  width: 100%;
   height: 100%;
   background: var(--bg);
-  color: var(--text);
-  font-family: 'Courier New', monospace;
-  overflow: hidden;
-}
-
-#terminal {
-  box-sizing: border-box;
-  padding: 1rem;
-  height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow-y: auto;
-  white-space: pre-wrap;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  color: var(--text);
 }
 
-.line {
-  word-break: break-word;
+.container {
+  text-align: center;
 }
 
-span.prompt {
-  color: var(--prompt);
+/* neon banner */
+.banner {
+  font-size: 0.7rem;
+  line-height: 1;
+  margin-bottom: 2rem;
+  color: var(--accent);
+  text-shadow: 0 0 4px var(--accent);
+  animation: flicker 2s infinite;
+}
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.7; }
 }
 
-.cursor {
+/* menu */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
   display: inline-block;
-  width: 0.6ch;
-  background: var(--cursor);
-  animation: blink 1s steps(2) infinite;
 }
-@keyframes blink {
-  0%, 50%    { opacity: 1; }
-  50.1%,100% { opacity: 0; }
+.menu-item {
+  --delay: 0s;
+  opacity: 0;
+  transform: translateY(10px);
+  margin: 0.5rem 0;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  animation: slideUp 0.4s ease-out forwards;
+  animation-delay: var(--delay);
+}
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-input.cmd {
-  background: transparent;
-  border: none;
-  color: inherit;
-  font: inherit;
-  outline: none;
-  width: calc(100% - 2ch);
+/* highlight style */
+.menu-item:hover,
+.menu-item.selected {
+  background: var(--accent);
+  color: var(--bg);
 }
 
-  .cursor {
-    display: inline-block;
-    width: 0.6ch;
-    background: #33ff33;
-    animation: blink 1s steps(2) infinite;
-  }
-  @keyframes blink {
-    0%, 50%   { opacity: 1; }
-    50.1%, 100% { opacity: 0; }
-  }
-  
-  /* invisible text input for user commands */
-  input.cmd {
-    background: transparent;
-    border: none;
-    color: inherit;
-    font: inherit;
-    outline: none;
-    width: calc(100% - 2ch);
+/* output */
+#output {
+  margin-top: 2rem;
+  font-size: 0.6rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  min-height: 4rem;
+}
+
+.strike {
+    text-decoration: line-through;
+    text-decoration-color: #ffa7c4;
+    text-decoration-thickness: 3px;
   }
   
